@@ -31,6 +31,8 @@ export default merge(baseConfig, {
       // add the new webpack.HotModuleReplacementPlugin() to the webpack configuration.
       // add hot: true to the webpack-dev-server configuration to enable HMR on the server.
       'webpack/hot/dev-server',
+      // enable react-hot-loader
+      'react-hot-loader/patch',
       sourcePath
     ]
   },

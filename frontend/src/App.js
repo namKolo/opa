@@ -13,7 +13,8 @@ export default class App extends Component {
     const { color } = this.state;
     return (
       <div style={{ color }}>
-        Hello World. <button onClick={this.handleColorChange}>change color</button>
+        Hello World
+        <button onClick={this.handleColorChange}>change color</button>
       </div>
     );
   }
