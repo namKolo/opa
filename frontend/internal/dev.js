@@ -1,3 +1,4 @@
+import path from 'path';
 import webpack from 'webpack';
 import webpackDevServer from 'webpack-dev-server';
 
@@ -7,6 +8,7 @@ const compiler = webpack(webpackConfig);
 const devServerOptions = {
   // The bundled files will be available in the browser under this path.
   publicPath: webpackConfig.output.publicPath,
+  contentBase: path.join(process.cwd(), 'public', 'build'),
   stats: {
     colors: true
   },

@@ -1,3 +1,4 @@
+require('lodash');
 const target = document.querySelector('#main');
 
 target.innerHTML = 'Hello world. My name is Nam';
