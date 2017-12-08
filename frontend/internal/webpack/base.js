@@ -1,30 +1,28 @@
 import path from 'path';
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-
-const sourcePath = path.resolve(process.cwd(), 'src/index.js');
-const buildPath = path.resolve(process.cwd(), 'public/build');
 
 export default {
-  devtool: 'cheap-module-source-map',
-  entry: {
-    app: [sourcePath]
-  },
   target: 'web',
-  output: {
-    path: buildPath,
-    // The bundled files will be available in the browser under this path. It is used for webpack-dev-server
-    publicPath: '/',
-    filename: '[name].js'
-  },
   module: {
-    rules: [{ test: /\.js?$/, exclude: /node_modules/, loaders: ['babel-loader'] }]
+    rules: [
+      { test: /\.js?$/, exclude: /node_modules/, loaders: ['babel-loader'] },
+      {
+        test: /\.ejs?$/,
+        exclude: /node_modules/,
+        loaders: ['ejs-loader']
+      }
+    ]
   },
   plugins: [
-    // HMR purpose
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'public/template.html'
+    // avoiding rebuilding third lib
+    // reduce lots of incremental build time
+    new webpack.DllReferencePlugin({
+      context: '.',
+      manifest: path.join(process.cwd(), 'dll', 'vendor-manifest.json')
     })
-  ]
+  ],
+  resolve: {
+    modules: ['src', 'node_modules'],
+    extensions: ['*', '.js', '.json']
+  }
 };

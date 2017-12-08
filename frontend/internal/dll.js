@@ -2,10 +2,10 @@
  eslint-disable
 */
 import webpack from 'webpack';
-import config from './webpack/prod';
+import config from './webpack/dll';
 
 process.env.NODE_ENV = 'production';
-
+// Pre built
 webpack(config).run((error, stats) => {
   if (error) {
     // so a fatal error occurred. Stop here.
@@ -27,7 +27,7 @@ webpack(config).run((error, stats) => {
   console.log(`Webpack stats: ${stats}`);
 
   // if we got this far, the build succeeded.
-  console.log("Your app is compiled in production mode in /public/build. It's ready to roll!");
+  console.log("Your dll is compiled in production mode in /public/build/dll. It's ready to roll!");
 
   return 0;
 });
