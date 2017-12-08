@@ -19,6 +19,10 @@ export default {
     new webpack.DllReferencePlugin({
       context: '.',
       manifest: path.join(process.cwd(), 'dll', 'vendor-manifest.json')
+    }),
+    new webpack.DllReferencePlugin({
+      context: '.',
+      manifest: path.join(process.cwd(), 'dll', 'react-manifest.json')
     })
   ],
   resolve: {
