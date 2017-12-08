@@ -1,4 +1,5 @@
 import path from 'path';
+import fs from 'fs';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -6,6 +7,16 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import baseConfig from './base';
 
 const sourcePath = path.resolve(process.cwd(), 'src/index.js');
+const dllBuildPath = path.join(process.cwd(), 'public', 'build', 'dll');
+const vendorFiles = fs
+  .readdirSync(dllBuildPath)
+  .map(file => {
+    if (file.indexOf('dll.') >= 0) {
+      return '/' + file;
+    }
+    return null;
+  })
+  .filter(Boolean);
 
 export default merge(baseConfig, {
   devtool: 'cheap-module-source-map',
@@ -37,7 +48,9 @@ export default merge(baseConfig, {
     // HMR purpose
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: 'public/template.html'
+      template: 'public/template.ejs',
+      inject: true,
+      vendorFiles
     })
   ]
 });
