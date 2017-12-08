@@ -1,3 +1,7 @@
 ### OPA frontend
 
-The reason I create this project is about to sharp my skill on frontend. I will try to apply my knowledge to build a project
+
+#### .babelrc
+- `es2015`: es2015 syntax
+- `stage-0`: `state = { }`, arrow function likes `onClick = () => {}`
+- `react`: compile jsx code
