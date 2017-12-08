@@ -2,7 +2,7 @@
  eslint-disable
 */
 import webpack from 'webpack';
-import config from './webpack/base';
+import config from './webpack/prod';
 
 process.env.NODE_ENV = 'production';
 
