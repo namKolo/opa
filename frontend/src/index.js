@@ -1,13 +1,6 @@
-require('lodash');
-const target = document.querySelector('#main');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-target.innerHTML = 'Hello world. My name is Nam';
+import App from './App';
 
-if (module.hot) {
-  module.hot.accept(err => {
-    if (err) {
-      // eslint-disable-next-line
-      console.error('Cannot apply HMR update.', err);
-    }
-  });
-}
+ReactDOM.render(<App />, document.getElementById('main'));
