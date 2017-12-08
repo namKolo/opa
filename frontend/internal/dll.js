@@ -2,9 +2,9 @@
  eslint-disable
 */
 import webpack from 'webpack';
-import config from './webpack/dll';
+import createDllConfig from './webpack/dll';
 
-process.env.NODE_ENV = 'production';
+const config = createDllConfig(process.env.NODE_ENV);
 // Pre built
 webpack(config).run((error, stats) => {
   if (error) {

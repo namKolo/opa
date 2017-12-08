@@ -3,9 +3,10 @@ var webpack = require('webpack');
 
 const buildPath = path.join(process.cwd(), 'public', 'build', 'dll');
 
-module.exports = {
+export default (env = 'developement') => ({
   entry: {
-    vendor: ['lodash']
+    vendor: ['lodash'],
+    react: ['react', 'react-dom']
   },
   output: {
     path: buildPath,
@@ -13,6 +14,9 @@ module.exports = {
     library: '[name]_[hash]'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(env)
+    }),
     new webpack.DllPlugin({
       context: '.',
       path: path.join(process.cwd(), 'dll', '[name]-manifest.json'),
@@ -25,4 +29,4 @@ module.exports = {
     modules: ['src', 'node_modules'],
     extensions: ['*', '.js', '.json']
   }
-};
+});

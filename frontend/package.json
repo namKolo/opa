@@ -3,7 +3,7 @@
     "babel": "babel-node",
     "build:js": "npm run babel ./internal/build.js",
     "build:dll": "npm run babel ./internal/dll.js",
-    "build": "npm run build:dll && npm run build:js",
+    "build": "NODE_ENV=production npm run build:dll && npm run build:js",
     "dev": "npm run babel ./internal/dev.js --hot"
   },
   "devDependencies": {
