@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+  <% for (var i = 0; i < htmlWebpackPlugin.options.vendorFiles.length; ++i) { %>
+  <script src="./dll/<%= htmlWebpackPlugin.options.vendorFiles[i] %>"></script>
+  <% } %>
+
+  <div id="main"></div>
+</body>
+</html>
