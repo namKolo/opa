@@ -13,6 +13,11 @@ type LoginRequest struct {
 	Password string `json:"password"`
 }
 
+// LoginResponse return jwt token when login success
+type LoginResponse struct {
+	Token string `json:"token"`
+}
+
 // CreateUserRequest format
 type CreateUserRequest struct {
 	Name     string `json:"name"`

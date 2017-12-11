@@ -16,7 +16,7 @@ type UserService struct {
 }
 
 // Signin - login
-func (service UserService) Signin(loginRequest model.LoginRequest) (*model.UserResponse, error) {
+func (service UserService) Signin(loginRequest model.LoginRequest) (*model.User, error) {
 	email := loginRequest.Email
 	var user model.User
 	err := service.DbClient.Get(tableName, email, &user)
@@ -33,10 +33,7 @@ func (service UserService) Signin(loginRequest model.LoginRequest) (*model.UserR
 		return nil, errors.New("invalid password")
 	}
 
-	return &model.UserResponse{
-		Name:  user.Name,
-		Email: user.Email,
-	}, nil
+	return &user, nil
 }
 
 // Signup create new user

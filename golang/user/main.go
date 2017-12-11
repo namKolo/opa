@@ -4,7 +4,6 @@ import (
 	"flag"
 	"log"
 
-	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 	config "github.com/namKolo/opa/golang/user/config"
 	handler "github.com/namKolo/opa/golang/user/handler"
@@ -27,9 +26,6 @@ func main() {
 	}
 
 	r := gin.Default()
-	store, _ := sessions.NewRedisStore(10, "tcp", "localhost:6379", "", []byte("secret"))
-	r.Use(sessions.Sessions("gin-boilerplate-session", store))
-
 	v1 := r.Group("/v1/user")
 	{
 		/*** START USER ***/

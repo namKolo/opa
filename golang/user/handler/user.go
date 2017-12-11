@@ -1,8 +1,13 @@
 package controller
 
 import (
-	"github.com/gin-gonic/contrib/sessions"
+	"bytes"
+	"encoding/json"
+	"io/ioutil"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
+	authModel "github.com/namKolo/opa/golang/auth/model"
 	model "github.com/namKolo/opa/golang/user/model"
 	service "github.com/namKolo/opa/golang/user/service"
 )
@@ -28,13 +33,30 @@ func (handler UserHandler) Signin(c *gin.Context) {
 		c.Abort()
 		return
 	}
-	session := sessions.Default(c)
-	session.Set("user_email", user.Email)
-	session.Set("user_name", user.Name)
-	session.Save()
-	c.JSON(200, gin.H{"message": "User signed in", "user": user})
+
+	// Send request to auth service to generate token
+	jsonValue, _ := json.Marshal(user)
+	res, err := http.Post(
+		"http://localhost:3002/v1/auth/generate",
+		"application/json",
+		bytes.NewBuffer(jsonValue),
+	)
+	if err != nil {
+		panic(err)
+	}
+	defer res.Body.Close()
+	body, err := ioutil.ReadAll(res.Body)
+	var token authModel.Token
+	if err = json.Unmarshal(body, &token); err != nil {
+		c.JSON(406, gin.H{"message": "Invalid signin details", "error": err.Error()})
+		c.Abort()
+		return
+	}
+
+	c.JSON(200, &token)
 }
 
+// Signup to create new user
 func (handler UserHandler) Signup(c *gin.Context) {
 	var request model.CreateUserRequest
 	if c.BindJSON(&request) != nil {
@@ -49,9 +71,5 @@ func (handler UserHandler) Signup(c *gin.Context) {
 		c.Abort()
 		return
 	}
-	session := sessions.Default(c)
-	session.Set("user_email", user.Email)
-	session.Set("user_name", user.Name)
-	session.Save()
 	c.JSON(200, gin.H{"message": "User signed up", "user": user})
 }
