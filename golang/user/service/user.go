@@ -3,7 +3,7 @@ package controller
 import (
 	"errors"
 
-	model "github.com/namKolo/opa/golang/user/model"
+	model "github.com/namKolo/opa/golang/share/model"
 	storage "github.com/namKolo/opa/golang/user/storage"
 	"golang.org/x/crypto/bcrypt"
 )

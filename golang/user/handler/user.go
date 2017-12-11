@@ -7,8 +7,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	authModel "github.com/namKolo/opa/golang/auth/model"
-	model "github.com/namKolo/opa/golang/user/model"
+	model "github.com/namKolo/opa/golang/share/model"
 	service "github.com/namKolo/opa/golang/user/service"
 )
 
@@ -37,16 +36,19 @@ func (handler UserHandler) Signin(c *gin.Context) {
 	// Send request to auth service to generate token
 	jsonValue, _ := json.Marshal(user)
 	res, err := http.Post(
-		"http://localhost:3002/v1/auth/generate",
+		"http://auth:3001/v1/auth/generate",
 		"application/json",
 		bytes.NewBuffer(jsonValue),
 	)
 	if err != nil {
-		panic(err)
+		c.JSON(406, gin.H{"message": "Invalid signin details", "error": err.Error()})
+		c.Abort()
+		return
 	}
+
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
-	var token authModel.Token
+	var token model.Token
 	if err = json.Unmarshal(body, &token); err != nil {
 		c.JSON(406, gin.H{"message": "Invalid signin details", "error": err.Error()})
 		c.Abort()

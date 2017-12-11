@@ -5,7 +5,7 @@ import (
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	model "github.com/namKolo/opa/golang/auth/model"
+	model "github.com/namKolo/opa/golang/share/model"
 )
 
 // TokenHandler handle token routes
