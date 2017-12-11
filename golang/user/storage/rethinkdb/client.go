@@ -8,7 +8,6 @@ import (
 // Client of rethinkdb
 type Client struct {
 	session *r.Session
-	config  config.RethinkDB
 }
 
 // Insert new record
@@ -54,6 +53,5 @@ func NewClient(config config.RethinkDB) (*Client, error) {
 
 	return &Client{
 		session: session,
-		config:  config,
 	}, nil
 }
