@@ -1,10 +1,12 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const buildPath = path.join(process.cwd(), 'public', 'build', 'dll');
 
 export default (env = 'developement') => {
   const plugins = [
+    new CleanWebpackPlugin(buildPath),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env)
     }),
@@ -23,7 +25,8 @@ export default (env = 'developement') => {
   return {
     entry: {
       vendor: ['lodash'],
-      react: ['react', 'react-dom']
+      react: ['react', 'react-dom', 'react-redux'],
+      redux: ['redux', 'redux-thunk']
     },
     output: {
       path: buildPath,
