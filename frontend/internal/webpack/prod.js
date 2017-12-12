@@ -32,7 +32,7 @@ export default merge(baseConfig, {
     filename: '[name].[chunkhash].js'
   },
   plugins: [
-    new CleanWebpackPlugin(buildPath),
+    new CleanWebpackPlugin(buildPath, { allowExternal: true, exclude: ['dll'] }),
     // define environment
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
