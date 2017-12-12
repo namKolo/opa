@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 import baseConfig from './base';
@@ -31,6 +32,7 @@ export default merge(baseConfig, {
     filename: '[name].[chunkhash].js'
   },
   plugins: [
+    new CleanWebpackPlugin(buildPath),
     // define environment
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')

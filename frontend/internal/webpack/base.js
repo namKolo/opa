@@ -1,6 +1,13 @@
 import path from 'path';
 import webpack from 'webpack';
 
+const dllPlugins = ['vendor', 'redux', 'react'].map(
+  lib =>
+    new webpack.DllReferencePlugin({
+      context: '.',
+      manifest: path.join(process.cwd(), 'dll', `${lib}-manifest.json`)
+    })
+);
 export default {
   target: 'web',
   module: {
@@ -13,18 +20,7 @@ export default {
       }
     ]
   },
-  plugins: [
-    // avoiding rebuilding third lib
-    // reduce lots of incremental build time
-    new webpack.DllReferencePlugin({
-      context: '.',
-      manifest: path.join(process.cwd(), 'dll', 'vendor-manifest.json')
-    }),
-    new webpack.DllReferencePlugin({
-      context: '.',
-      manifest: path.join(process.cwd(), 'dll', 'react-manifest.json')
-    })
-  ],
+  plugins: dllPlugins,
   resolve: {
     modules: ['src', 'node_modules'],
     extensions: ['*', '.js', '.json']
