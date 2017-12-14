@@ -23,7 +23,7 @@ const vendorFiles = fs
 export default merge(baseConfig, {
   devtool: 'cheap-module-source-map',
   entry: {
-    app: [sourcePath]
+    app: ['babel-polyfill', sourcePath]
   },
   output: {
     path: buildPath,
