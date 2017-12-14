@@ -1,5 +1,9 @@
 // @flow
 import React, { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import theme from 'style/theme';
+import { LoginForm } from 'component/Form';
 
 type State = {
   color: string
@@ -14,13 +18,17 @@ export default class App extends Component<*, State> {
     this.setState({ color: 'blue' });
   };
 
+  // eslint-disable-next-line
+  handleLogin = (info: Object) => console.log(info);
+
   render() {
     const { color } = this.state;
     return (
-      <div style={{ color }}>
-        Hello World
-        <button onClick={this.handleColorChange}>change color</button>
-      </div>
+      <MuiThemeProvider {...{ theme }}>
+        <div style={{ color }}>
+          <LoginForm onLogin={this.handleLogin} />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

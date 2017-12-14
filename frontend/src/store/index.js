@@ -16,6 +16,7 @@ const composeEnhancers =
 const sagaMdw = createSagaMdw();
 const mdws = [thunk, sagaMdw];
 const createAppStore = (): Store => {
+  // $FlowFixMe
   const store = createStore(reducer, composeEnhancers(applyMiddleware(...mdws)));
   sagaMdw.run(saga);
   return store;

@@ -6,11 +6,22 @@
 .*/node_modules/eslint-plugin-jsx-a11y/*
 .*/node_modules/styled-components/.*
 .*/node_modules/react-motion/lib/.*\.js\.flow.*
+.*/node_modules/jss/lib/.*\.js\.flow
+.*/node_modules/material-ui/Input/.*\.js\.flow.*
+.*/node_modules/material-ui/Menu/.*\.js\.flow.*
+.*/node_modules/material-ui/Modal/.*\.js\.flow.*
+.*/node_modules/material-ui/Hidden/.*\.js\.flow.*
+.*/node_modules/material-ui/svg-icons/**/.*\.js\.flow.*
+.*/node_modules/react-flow-types/.*\.js\.flow.*
 
 [include]
+.*/node_modules/material-ui/**/.*\.js\.flow
+
 
 [libs]
+node_modules/material-ui/**/.*\.js\.flow
 .*/node_modules/draft-js/**/.*\.react\.js\.flow
+./flow-typed
 
 [options]
 module.name_mapper='^\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
