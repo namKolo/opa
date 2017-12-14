@@ -1,9 +1,12 @@
+// @flow
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import createSagaMdw from 'redux-saga';
 
-import reducer from 'reducer';
-import saga from 'sagas';
+import type { Store } from 'types';
+
+import reducer from './reducers';
+import saga from './sagas';
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -12,9 +15,10 @@ const composeEnhancers =
 
 const sagaMdw = createSagaMdw();
 const mdws = [thunk, sagaMdw];
-const createAppStore = () => createStore(reducer, composeEnhancers(applyMiddleware(...mdws)));
-
-// run all sagas
-sagaMdw.run(saga);
+const createAppStore = (): Store => {
+  const store = createStore(reducer, composeEnhancers(applyMiddleware(...mdws)));
+  sagaMdw.run(saga);
+  return store;
+};
 
 export default createAppStore;

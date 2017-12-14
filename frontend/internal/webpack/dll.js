@@ -24,9 +24,16 @@ export default (env = 'developement') => {
 
   return {
     entry: {
-      vendor: ['lodash'],
-      react: ['react', 'react-dom', 'react-redux'],
-      redux: ['redux', 'redux-thunk']
+      vendor: ['lodash', 'babel-polyfill'],
+      react: [
+        'react',
+        'react-dom',
+        'react-redux',
+        'react-motion',
+        'material-ui',
+        'styled-components'
+      ],
+      redux: ['redux', 'redux-thunk', 'redux-saga', 'redux-saga-thunk']
     },
     output: {
       path: buildPath,
