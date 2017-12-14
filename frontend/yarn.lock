@@ -2196,6 +2196,10 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
+flow-bin@^0.61.0:
+  version "0.61.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.61.0.tgz#d0473a8c35dbbf4de573823f4932124397d32d35"
+
 for-in@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -3963,6 +3967,12 @@ redent@^1.0.0:
   dependencies:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
+
+redux-saga-thunk@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/redux-saga-thunk/-/redux-saga-thunk-0.5.2.tgz#c51be2f499419111abe46d3af7810ad67fd6de89"
+  dependencies:
+    lodash "^4.17.4"
 
 redux-saga@^0.16.0:
   version "0.16.0"

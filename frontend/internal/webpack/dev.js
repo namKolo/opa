@@ -22,6 +22,7 @@ export default merge(baseConfig, {
   devtool: 'cheap-module-source-map',
   entry: {
     app: [
+      'babel-polyfill',
       // There is no inline: true flag in the webpack-dev-server configuration, because the webpack-dev-server module has no access to the webpack configuration.
       // Instead, the user must add the webpack-dev-server client entry point to the webpack configuration.
       // To do this, simply add the following to all entry points: webpack-dev-server/client?http://«path»:«port»/
