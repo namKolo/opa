@@ -1,6 +1,11 @@
+// @flow
 import React, { Component } from 'react';
 
-export default class App extends Component {
+type State = {
+  color: string
+};
+
+export default class App extends Component<*, State> {
   state = {
     color: 'red'
   };
