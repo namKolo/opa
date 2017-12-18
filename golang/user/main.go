@@ -4,6 +4,7 @@ import (
 	"flag"
 	"log"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	config "github.com/namKolo/opa/golang/user/config"
 	handler "github.com/namKolo/opa/golang/user/handler"
@@ -26,6 +27,12 @@ func main() {
 	}
 
 	r := gin.Default()
+	r.Use(cors.New(cors.Config{
+		AllowAllOrigins: true,
+		AllowMethods:    []string{"PUT", "OPTIONS", "PATCH", "POST", "GET"},
+		AllowHeaders:    []string{"Origin", "Content-Type"},
+	}))
+
 	v1 := r.Group("/v1/user")
 	{
 		/*** START USER ***/

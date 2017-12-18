@@ -28,6 +28,7 @@
     "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.4",
     "material-ui": "^1.0.0-beta.23",
+    "query-string": "^5.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-motion": "^0.5.2",
@@ -37,6 +38,7 @@
     "redux-saga": "^0.16.0",
     "redux-saga-thunk": "^0.5.2",
     "redux-thunk": "^2.2.0",
+    "request": "^2.83.0",
     "styled-components": "^2.2.4"
   }
 }

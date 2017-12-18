@@ -2,6 +2,7 @@ FROM opa/share
 
 RUN go get github.com/dancannon/gorethink
 RUN go get github.com/gin-gonic/gin
+RUN go get github.com/gin-contrib/cors
 
 ADD . /go/src/github.com/namKolo/opa/golang/user 
 

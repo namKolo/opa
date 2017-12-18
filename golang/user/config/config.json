@@ -4,7 +4,7 @@
     "port": "3002"
   },
   "rethinkdb": {
-    "host": "db:28015",
+    "host": "localhost:28015",
     "password": "yourpassword",
     "db": "test"
   }

@@ -17,7 +17,7 @@ const devServerOptions = {
 };
 
 const server = new webpackDevServer(compiler, devServerOptions);
-server.listen(8080, 'localhost', () => {
+server.listen(1199, 'localhost', () => {
   // eslint-disable-next-line
-  console.log('Starting server on http://localhost:8080');
+  console.log('Starting server on http://localhost:1199');
 });
