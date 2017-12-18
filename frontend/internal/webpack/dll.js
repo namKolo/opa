@@ -24,7 +24,7 @@ export default (env = 'developement') => {
 
   return {
     entry: {
-      vendor: ['lodash', 'babel-polyfill'],
+      vendor: ['lodash', 'babel-polyfill', 'query-string', 'request'],
       react: [
         'react',
         'react-dom',
