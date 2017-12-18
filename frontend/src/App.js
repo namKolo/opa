@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import theme from 'style/theme';
-import { LoginForm } from 'component/Form';
+import { SignupForm } from 'component/Form';
+import api from 'lib/api';
 
 type State = {
   color: string
@@ -19,14 +20,26 @@ export default class App extends Component<*, State> {
   };
 
   // eslint-disable-next-line
-  handleLogin = (info: Object) => console.log(info);
+  handleLogin = (info: Object) => {
+    api
+      .post(
+        '/user/signup',
+        {
+          email: info.username,
+          password: info.password
+        },
+        {}
+      )
+      // eslint-disable-next-line
+      .then(res => console.log(res));
+  };
 
   render() {
     const { color } = this.state;
     return (
       <MuiThemeProvider {...{ theme }}>
         <div style={{ color }}>
-          <LoginForm onLogin={this.handleLogin} />
+          <SignupForm onSignUp={this.handleLogin} />
         </div>
       </MuiThemeProvider>
     );

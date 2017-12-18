@@ -26,7 +26,7 @@ export default merge(baseConfig, {
       // There is no inline: true flag in the webpack-dev-server configuration, because the webpack-dev-server module has no access to the webpack configuration.
       // Instead, the user must add the webpack-dev-server client entry point to the webpack configuration.
       // To do this, simply add the following to all entry points: webpack-dev-server/client?http://«path»:«port»/
-      'webpack-dev-server/client?http://localhost:8080/',
+      'webpack-dev-server/client?http://localhost:1199/',
       //Three changes are needed:
       // add an entry point to the webpack configuration: webpack/hot/dev-server.
       // add the new webpack.HotModuleReplacementPlugin() to the webpack configuration.

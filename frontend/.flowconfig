@@ -21,7 +21,7 @@
 [libs]
 node_modules/material-ui/**/.*\.js\.flow
 .*/node_modules/draft-js/**/.*\.react\.js\.flow
-./flow-typed
+flow-typed
 
 [options]
 module.name_mapper='^\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
